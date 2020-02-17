@@ -14,7 +14,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "dev": "nodemon src/dist/server",
+    "dev": "nodemon src/dist/server.js",
     "dev:debug": "nodemon --inspect src/dist/server"
   },
   "devDependencies": {

@@ -29,9 +29,8 @@ module.exports = {
         "no-params-reassign": "off",
         "camelcase": "off",
         "no-unused-vars": ["error", {"argsIgnorePattern": "next"}],
-        "import/extensions": ['never', {
-          "js": "never",
-          "ts": "never",
-        }]
+        "import/no-unresolved": "off",
+        "import/extensions": "off",
+        "camelcase": "off"
   },
 };

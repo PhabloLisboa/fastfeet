@@ -1,16 +1,24 @@
-import * as sequelize from 'sequelize'
-import { Model } from 'sequelize-typescript'
+import {
+  VirtualDataType,
+  Model,
+  StringDataType,
+  NumberDataType
+} from "sequelize";
 
+class User extends Model<User> {
+  public id!: NumberDataType;
 
-class User extends Model<User>{
-   init(initOptions){
-    super.init({name: sequelize.DataTypes.STRING,
-      email: sequelize.DataTypes.STRING,
-      password_hash: sequelize.DataTypes.STRING,
+  public name!: StringDataType;
 
-    }, initOptions)
-  }
+  public email!: StringDataType;
+
+  public password_hash!: StringDataType;
+
+  public password: VirtualDataType<User["password_hash"]>;
+
+  public readonly createdAt!: Date;
+
+  public readonly updatedAt!: Date;
 }
 
 export default new User();
-
