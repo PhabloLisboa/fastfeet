@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize";
-// import User from "../app/models/User";
 
 import configDatabase from "../config/database";
 
