@@ -1,6 +1,7 @@
 import express from "express";
 
 import routes from "./routes";
+import "./database";
 
 class App<express> {
   public server: express.Application;

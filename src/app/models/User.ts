@@ -1,8 +1,23 @@
-import Sequelize, { Model } from "sequelize";
+import Sequelize from "sequelize";
+import { Model } from "sequelize-typescript";
 import bcrypt from "bcryptjs";
 
 class User extends Model {
-  static init(sequelize) {
+  public id!: number;
+
+  public name!: string;
+
+  public email!: string;
+
+  public password: string;
+
+  public password_hash: string;
+
+  public readonly created_at!: Date;
+
+  public readonly updated_at!: Date;
+
+  static init(sequelize): any {
     super.init(
       {
         name: Sequelize.STRING,
@@ -13,7 +28,7 @@ class User extends Model {
       { sequelize }
     );
 
-    this.addHook("beforeSave", async user => {
+    this.addHook("beforeSave", async (user: any) => {
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);
       }
