@@ -9,13 +9,37 @@ class UserController {
 
   async update(req: Request, resp: Response): Promise<Response> {
     const user = await User.findByPk(req.params.id);
-    user.update(req.body);
 
-    const { name, email } = user;
+    const { name, email } = await user.update(req.body);
     return resp.json({ message: "success", name, email });
   }
-  // async update(req, resp): Promise<Response> {}
-  // async update(req, resp): Promise<Response> {}
+
+  async get(req: Request, resp: Response): Promise<Response> {
+    const userList = await User.findAll({
+      attributes: {
+        exclude: ["password_hash"]
+      }
+    });
+    return resp.json(userList);
+  }
+
+  async show(req: Request, resp: Response): Promise<Response> {
+    const user = await User.findByPk(req.params.id);
+
+    if (user) {
+      const { name, email, created_at, updated_at } = user;
+      return resp.json({ name, email, created_at, updated_at });
+    }
+
+    return resp.status(404).send({ error: "User not found" });
+  }
+
+  async delete(req: Request, resp: Response): Promise<Response> {
+    const user = await User.findByPk(req.params.id);
+    const { name } = user;
+    user.destroy();
+    return resp.json({ message: `User ${name} was deleted` });
+  }
 }
 
 export default new UserController();
