@@ -36,6 +36,11 @@ class User extends Model {
 
     return this;
   }
+
+  async comparePass(pass): Promise<boolean> {
+    const compare = await bcrypt.compare(pass, this.password_hash);
+    return compare;
+  }
 }
 
 export default User;
