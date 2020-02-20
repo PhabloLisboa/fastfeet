@@ -18,7 +18,7 @@ class Database {
     this.connection = new Sequelize(
       "fastfeet",
       "root",
-      "12345",
+      "123456",
       configDatabase
     );
     models.map(model => model.init(this.connection));
