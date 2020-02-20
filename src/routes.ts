@@ -1,8 +1,11 @@
 import { Router } from "express";
+import SessionController from "./app/controllers/SessionController";
 import UserController from "./app/controllers/UserController";
 import RecipientController from "./app/controllers/RecipientController";
 
 const route = Router();
+
+route.post("/auth", SessionController.store);
 
 route.get("/users", UserController.get);
 route.get("/users/:id", UserController.show);

@@ -1,9 +1,11 @@
+import environment from "../config/environment";
+
 module.exports = {
   dialect: "mysql",
-  host: "localhost",
-  username: "root",
-  password: "123456",
-  database: "fastfeet",
+  host: environment.database.host,
+  username: environment.database.user,
+  password: environment.database.pass,
+  database: environment.database.db,
   define: {
     timestamps: true,
     underscored: true,
