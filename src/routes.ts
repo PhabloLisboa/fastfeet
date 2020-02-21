@@ -3,10 +3,13 @@ import SessionController from "./app/controllers/SessionController";
 import UserController from "./app/controllers/UserController";
 import RecipientController from "./app/controllers/RecipientController";
 
+import authMiddleware from "./app/middlewares/auth";
+
 const route = Router();
 
 route.post("/auth", SessionController.store);
 
+route.use("/users", authMiddleware);
 route.get("/users", UserController.get);
 route.get("/users/:id", UserController.show);
 route.post("/users", UserController.store);
